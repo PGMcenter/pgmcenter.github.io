@@ -7,7 +7,7 @@ baseurl:
 
 # Values for the jekyll-seo-tag gem (https://github.com/jekyll/jekyll-seo-tag)
 logo: /siteicon.png
-description: The ultimate DOS games setup for MiSTer
+description: The ultimate IGS PGM games setup for MiSTer
 author:
   name: PGM Center
   email:
