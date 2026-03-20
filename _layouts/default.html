@@ -1,0 +1,67 @@
+<!doctype html>
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		{% seo %}
+		{% feed_meta %}
+		<meta name="keywords" content="DOS games launcher, DOS game collection, MiSTer DOS setup, DOS FPGA emulator guide">
+		<script type="application/ld+json">
+		{
+		  "@context": "https://schema.org",
+		  "@type": "WebSite",
+		  "name": "{{ site.title | escape }}",
+		  "url": "{{ site.url }}{{ site.baseurl }}",
+		  "description": "{{ site.description | escape }}"
+		}
+		</script>
+		<link rel="preload" href="{{ site.baseurl }}/fonts/LibreBaskerville-Regular.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="{{ site.baseurl }}/fonts/LibreBaskerville-Bold.woff2" as="font" type="font/woff2" crossorigin>
+		<link rel="preload" href="{{ site.baseurl }}/fonts/LibreBaskerville-Italic.woff2" as="font" type="font/woff2" crossorigin>
+
+		<link rel="icon" type="image/png" href="{{ site.baseurl }}/favicon.png">
+
+		{% capture css %}
+    {% include pgm.css %}
+		{% endcapture %}
+		<style>{{ css | scssify }}</style>
+	</head>
+	<body{% if page.url == '/' %} class="home-page"{% elsif page.url == '/download' or page.url == '/download/' or page.url == '/download.html' %} class="download-page"{% endif %}>
+		<header>
+			<div class="container">
+				{% include navigation.html %}
+				{% if page.url == '/' %}
+					<div class="company-name home-mobile-logo"><a href="{{ site.baseurl }}/">PGM Center</a></div>
+				{% endif %}
+				{% unless page.url == '/' %}
+					<div class="company-name"><h1 style="margin: 0.5em 0"><a href="{{ site.baseurl }}/">PGM Center</a></h1></div>
+				{% endunless %}
+			</div>
+		</header>
+		{{ content }}
+		<footer>
+			<div class="container">
+				<div class="footer-columns">
+					{% for column in site.data.footer %}
+					<ul class="footer-links">
+						{% for link in column.links %}
+							<li><a {% if link.new_window %}target="_blank"{% endif %} href="{% include relative-src.html src=link.link %}" {% if link.social_icon %}class="{{ link.social_icon }}-icon"{% endif %}>
+								{% if link.social_icon %}
+									{% include social-icon.html icon=link.social_icon %}
+								{% endif %}
+								{{ link.name }}</a></li>
+						{% endfor %}
+					</ul>
+					{% endfor %}
+
+					<ul class="footer-links">
+						<li style="text-align: center">In Memory of<br><br>James McDonald<br>(1974&ndash;2025)<br><br>Project Founder</p></li>
+					</ul>
+				</div>
+			</div>
+
+		</footer>
+	</body>
+</html>

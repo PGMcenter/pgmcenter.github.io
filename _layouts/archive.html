@@ -1,0 +1,29 @@
+---
+layout: page
+---
+
+<div class="text-container">
+	{% assign blog = site.pages | where: "path", "blog/index.html" | first %}
+
+	{% if blog.title %}
+		<h2>{{ blog.title }}</h2>
+	{% endif %}
+
+	<div class="center-text">
+		<span class="blog-filter cross"><a href="{{ site.baseurl }}/blog/">{{ page.title | capitalize }}</a></span>
+	</div>
+
+	<ul class="blog-posts news-grid">
+		{% for post in page.posts %}
+			<li class="blog-post news-card">
+				<h3><a href="{% include relative-src.html src=post.url %}">{{ post.title }}</a></h3>
+				{% include post-title.html post=post %}
+				{% assign summary = post.description | default: post.excerpt | default: post.content %}
+				<p class="news-excerpt">{{ summary | strip_html | strip_newlines | truncatewords: 34 }}</p>
+				<div class="post-content">
+					<div class="button"><a href="{% include relative-src.html src=post.url %}">Read Article</a></div>
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+</div>
